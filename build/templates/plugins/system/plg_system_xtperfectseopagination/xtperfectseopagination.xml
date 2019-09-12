@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+  <name>PLG_SYSTEM_[TRANSLATION_KEY]</name>
+  <version>[RELEASE_VERSION]</version>
+  <creationDate>[DATE]</creationDate>
+
+[MANIFEST_COPYRIGHT]
+
+  <description>
+    <![CDATA[
+[EXTENSION_DESC]
+  ]]>
+  </description>
+
+  <languages folder="language">
+    <language tag="en-GB">en-GB/en-GB.plg_system_[EXTENSION_ALIAS].ini</language>
+    <language tag="en-GB">en-GB/en-GB.plg_system_[EXTENSION_ALIAS].sys.ini</language>
+  </languages>
+
+  <files>
+    <file plugin="[EXTENSION_ALIAS]">[EXTENSION_ALIAS].php</file>
+    <file>Pagination.php</file>
+  </files>
+
+  <config>
+    <fields name="params">
+      <fieldset name="basic">
+      </fieldset>
+    </fields>
+  </config>
+</extension>

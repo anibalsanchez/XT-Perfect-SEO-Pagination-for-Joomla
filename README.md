@@ -1,2 +1,7 @@
-# XT-SEO-Pagination-NoIndex-for-Joomla
-A plugin the define the meta name "robots" noindex, follow/nofollow to the HTML pages of a pagination.
+# XT SEO Pagination Link Rel Prev Next
+
+Link rel attribute definition for Joomla SEO Pagination.
+
+## Copyright
+
+- GNU General Public License version 3 or later; see LICENSE.txt
