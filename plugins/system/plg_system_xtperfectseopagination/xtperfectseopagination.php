@@ -13,6 +13,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Input\Input as CMSWebInput;
+use Extly\Pagination\XTPaginationHelper;
 
 /**
  * PlgSystemXYSeoLinkRelPagination class.
@@ -32,35 +33,45 @@ class PlgSystemXTPerfectSEOPagination extends JPlugin
 
     private $passed = false;
 
-    /**
-     * Executes before Joomla! renders its content.
-     *
-     * @return mixed
-     */
     public function onAfterRoute()
     {
         if ($this->passed || $this->app->isAdmin() || !$this->isPagination()) {
             return;
         }
 
+        require_once 'XTPaginationHelper.php';
+
+        if ($this->params->get('enhance_with_prevnextlinks', 1)) {
+            $xtPaginationHelper = new XTPaginationHelper();
+            $xtPaginationHelper->enhanceWithPrevNextLinks();
+        }
+    }
+
+    /**
+     * Executes before Joomla! renders its content.
+     *
+     * @return mixed
+     */
+    public function onBeforeCompileHead()
+    {
+        if ($this->passed || $this->app->isAdmin() || !$this->isPagination()) {
+            return;
+        }
+
         $this->passed = true;
-        require_once 'PaginationHelper.php';
+        $xtPaginationHelper = new XTPaginationHelper();
 
-        if ($this->params->get('enhance_description_with_page')) {
-            XTPaginationHelper::enhanceDescriptionWithPage();
+        if ($this->params->get('enhance_description_with_page', 1)) {
+            $xtPaginationHelper->enhanceDescriptionWithPage();
         }
 
-        if ($this->params->get('enhance_title_with_page')) {
-            XTPaginationHelper::enhanceTitleWithPage();
+        if ($this->params->get('enhance_title_with_page', 1)) {
+            $xtPaginationHelper->enhanceTitleWithPage();
         }
 
-        if ($this->params->get('enhance_with_noindex')) {
-            $paramNoindex = $this->params->get('enhance_with_noindex');
-            XTPaginationHelper::enhanceWithNoIndex($paramNoindex);
-        }
-
-        if ($this->params->get('enhance_with_prevnextlinks')) {
-            XTPaginationHelper::enhanceWithPrevNextLinks();
+        if ($this->params->get('enhance_with_noindex', 1)) {
+            $paramNoindex = (int) $this->params->get('enhance_with_noindex');
+            $xtPaginationHelper->enhanceWithNoIndex($paramNoindex);
         }
     }
 

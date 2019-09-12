@@ -23,23 +23,25 @@ class XTPaginationHelper
     public function enhanceTitleWithPage()
     {
         $app = CMSFactory::getApplication();
-        $sitenamePagetitles = $app->getCfg('sitename_pagetitles');
+        $sitenamePagetitles = (int) $app->getCfg('sitename_pagetitles');
 
         $doc = CMSFactory::getDocument();
         $currentTitle = $doc->getTitle();
         $pageLabel = $this->getPageLabel();
 
-        if (1 === $sitenamePagetitles) {
-            $newTitle = $currentTitle.' - '.$pageLabel;
+        // Sitename after
+        if (2 === $sitenamePagetitles) {
+            $sitename = $app->getCfg('sitename');
+            $currentTitleNositename = str_replace($sitename, '', $doc->getTitle());
+            $newTitle = $currentTitleNositename.$pageLabel.' - '.$sitename;
             $doc->setTitle($newTitle);
 
             return;
         }
 
-        if (2 === $sitenamePagetitles) {
-            $sitename = $app->getCfg('sitename');
-            $currentTitleNositename = str_replace($sitename, '', $doc->getTitle());
-            $newTitle = $currentTitleNositename.$pageLabel.' - '.$sitename;
+        // Sitename before
+        if (1 === $sitenamePagetitles) {
+            $newTitle = $currentTitle.' - '.$pageLabel;
             $doc->setTitle($newTitle);
 
             return;
@@ -56,7 +58,7 @@ class XTPaginationHelper
         $currentTitle = $doc->getTitle();
         $pageLabel = $this->getPageLabel();
 
-        $newDescription = ($currentDescription ? $currentDescription : $currentTitle).
+        $newDescription = trim($currentDescription ? $currentDescription : $currentTitle).
             ' - '.$pageLabel;
 
         $doc->setDescription($newDescription);
@@ -105,7 +107,12 @@ class XTPaginationHelper
     private function getCurrentPageNumber()
     {
         $input = new CMSWebInput;
-        $start = $input->getVar('start');
+
+        $start = $input->getInt('limitstart');
+
+        if (!$start) {
+            $start = $input->getInt('start');
+        }
 
         return $start;
     }
