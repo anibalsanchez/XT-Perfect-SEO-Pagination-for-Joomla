@@ -47,4 +47,8 @@
       </fieldset>
     </fields>
   </config>
+  <!-- Update servers -->
+  <updateservers>
+    <server type="extension" priority="1" name="[EXTENSION_NAME]">[EXTENSION_CDN]/update-plg_system_[EXTENSION_ALIAS].xml</server>
+  </updateservers>
 </extension>

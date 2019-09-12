@@ -14,6 +14,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Input\Input as CMSWebInput;
 use Extly\Pagination\XTPaginationHelper;
+use Joomla\CMS\Application\AdministratorApplication;
 
 /**
  * PlgSystemXYSeoLinkRelPagination class.
@@ -35,7 +36,7 @@ class PlgSystemXTPerfectSEOPagination extends JPlugin
 
     public function onAfterRoute()
     {
-        if ($this->passed || $this->app->isAdmin() || !$this->isPagination()) {
+        if ($this->passed || $this->app instanceof AdministratorApplication || !$this->isPagination()) {
             return;
         }
 
@@ -54,7 +55,7 @@ class PlgSystemXTPerfectSEOPagination extends JPlugin
      */
     public function onBeforeCompileHead()
     {
-        if ($this->passed || $this->app->isAdmin() || !$this->isPagination()) {
+        if ($this->passed || $this->app instanceof AdministratorApplication || !$this->isPagination()) {
             return;
         }
 
