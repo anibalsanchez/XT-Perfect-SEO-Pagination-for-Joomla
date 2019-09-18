@@ -12,9 +12,9 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Input\Input as CMSWebInput;
 use Extly\Pagination\XTPaginationHelper;
 use Joomla\CMS\Application\AdministratorApplication;
+use Joomla\CMS\Input\Input as CMSWebInput;
 
 /**
  * PlgSystemXYSeoLinkRelPagination class.
@@ -74,11 +74,15 @@ class PlgSystemXTPerfectSEOPagination extends JPlugin
             $paramNoindex = (int) $this->params->get('enhance_with_noindex');
             $xtPaginationHelper->enhanceWithNoIndex($paramNoindex);
         }
+
+        if ($this->params->get('enhance_with_canonicallink', 1)) {
+            $xtPaginationHelper->enhanceWithCanonicalLink();
+        }
     }
 
     private function isPagination()
     {
-        $input = new CMSWebInput;
+        $input = new CMSWebInput();
 
         return (int) $input->getVar('start') > 0 || (int) $input->getVar('limitstart') > 0;
     }

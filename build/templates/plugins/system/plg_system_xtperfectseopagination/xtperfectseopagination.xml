@@ -6,11 +6,7 @@
 
 [MANIFEST_COPYRIGHT]
 
-  <description>
-    <![CDATA[
-[EXTENSION_DESC]
-  ]]>
-  </description>
+  <description>PLG_SYSTEM_[TRANSLATION_KEY]_DESC</description>
 
   <languages folder="language">
     <language tag="en-GB">en-GB/en-GB.plg_system_[EXTENSION_ALIAS].ini</language>
@@ -40,7 +36,11 @@
           <option value="1">noindex, follow</option>
           <option value="2">noindex, nofollow</option>
         </field>
-        <field name="enhance_with_prevnextlinks" type="radio" default="0" description="PLG_SYSTEM_XT_PERFECT_SEO_PAGINATION_ENHANCE_WITH_PREVNEXTLINKS_DESC" label="PLG_SYSTEM_XT_PERFECT_SEO_PAGINATION_ENHANCE_WITH_PREVNEXTLINKS_LABEL" class="radio btn-group btn-group-yesno">
+        <field name="enhance_with_prevnextlinks" type="radio" default="1" description="PLG_SYSTEM_XT_PERFECT_SEO_PAGINATION_ENHANCE_WITH_PREVNEXTLINKS_DESC" label="PLG_SYSTEM_XT_PERFECT_SEO_PAGINATION_ENHANCE_WITH_PREVNEXTLINKS_LABEL" class="radio btn-group btn-group-yesno">
+          <option value="1">JYes</option>
+          <option value="0">JNo</option>
+        </field>
+        <field name="enhance_with_canonicallink" type="radio" default="1" description="PLG_SYSTEM_XT_PERFECT_SEO_PAGINATION_ENHANCE_WITH_CANONICALLINK_DESC" label="PLG_SYSTEM_XT_PERFECT_SEO_PAGINATION_ENHANCE_WITH_CANONICALLINK_LABEL" class="radio btn-group btn-group-yesno">
           <option value="1">JYes</option>
           <option value="0">JNo</option>
         </field>

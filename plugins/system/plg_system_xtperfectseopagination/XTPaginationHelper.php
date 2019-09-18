@@ -17,6 +17,7 @@ namespace Extly\Pagination;
 use Joomla\CMS\Factory as CMSFactory;
 use Joomla\CMS\Input\Input as CMSWebInput;
 use Joomla\CMS\Language\Text as CMSText;
+use Joomla\CMS\Uri\Uri as CMSUri;
 
 class XTPaginationHelper
 {
@@ -84,6 +85,12 @@ class XTPaginationHelper
         require_once 'J3-Pagination.php';
     }
 
+    public static function enhanceWithCanonicalLink()
+    {
+        $doc = CMSFactory::getDocument();
+        $doc->addHeadLink(CMSUri::current(), 'canonical');
+    }
+
     public static function generateSeoLinkRelPagination($data)
     {
         $doc = CMSFactory::getDocument();
@@ -106,7 +113,7 @@ class XTPaginationHelper
 
     private function getCurrentPageNumber()
     {
-        $input = new CMSWebInput;
+        $input = new CMSWebInput();
 
         $start = $input->getInt('limitstart');
 

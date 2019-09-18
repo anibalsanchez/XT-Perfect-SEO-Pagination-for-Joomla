@@ -1,6 +1,6 @@
 {
   "name": "xtperfectseopagination",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An essential solution the define the meta name robots and the prev/next links to the HTML pages of the site pagination.",
   "main": "webpack.config.js",
   "scripts": {
