@@ -88,7 +88,7 @@ class XTPaginationHelper
     public static function enhanceWithCanonicalLink()
     {
         $doc = CMSFactory::getDocument();
-        $doc->addHeadLink(CMSUri::current(), 'canonical');
+        $doc->addHeadLink(CMSUri::getInstance()->toString(), 'canonical');
     }
 
     public static function generateSeoLinkRelPagination($data)
