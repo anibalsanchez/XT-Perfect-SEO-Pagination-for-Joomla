@@ -4,7 +4,7 @@
  * @package     XT Perfect SEO Pagination
  *
  * @author      Extly, CB. <team@extly.com>
- * @copyright   Copyright (c)2012-2021 Extly, CB. All rights reserved.
+ * @copyright   Copyright (c)2012-2023 Extly, CB. All rights reserved.
  * @license     http://www.gnu.org/licenses/gpl-2.0.html  GNU/GPLv2
  *
  * @see         https://www.extly.com
@@ -74,10 +74,18 @@ class XTPaginationHelper
 
     public static function enhanceWithPrevNextLinks()
     {
-        $isJ4 = file_exists(JPATH_LIBRARIES.'/bootstrap.php');
+        $isJ4orJ5 = file_exists(JPATH_LIBRARIES.'/bootstrap.php');
 
-        if ($isJ4) {
-            require_once 'J4-Pagination.php';
+        if ($isJ4orJ5) {
+            $isJ4 = file_exists(JPATH_LIBRARIES.'/classmap.php');
+
+            if ($isJ4) {
+                require_once 'J4-Pagination.php';
+
+                return;
+            }
+
+            require_once 'J5-Pagination.php';
 
             return;
         }
