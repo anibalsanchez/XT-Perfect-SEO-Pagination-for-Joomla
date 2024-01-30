@@ -17,6 +17,7 @@
     <file plugin="[EXTENSION_ALIAS]">[EXTENSION_ALIAS].php</file>
     <file>J3-Pagination.php</file>
     <file>J4-Pagination.php</file>
+    <file>J5-Pagination.php</file>
     <file>XTPaginationHelper.php</file>
   </files>
 
