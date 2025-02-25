@@ -4,8 +4,8 @@
  * @package     XT Perfect SEO Pagination
  *
  * @author      Extly, CB. <team@extly.com>
- * @copyright   Copyright (c)2012-2024 Extly, CB. All rights reserved.
- * @license     http://www.gnu.org/licenses/gpl-2.0.html  GNU/GPLv2
+ * @copyright   Copyright (c)2012-2025 Extly, CB. All rights reserved.
+ * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  *
  * @see         https://www.extly.com
  */
@@ -40,7 +40,7 @@ class PlgSystemXTPerfectSEOPagination extends JPlugin
             return;
         }
 
-        require_once 'XTPaginationHelper.php';
+        require_once __DIR__.'/XTPaginationHelper.php';
 
         if ($this->params->get('enhance_with_prevnextlinks', 1)) {
             $xtPaginationHelper = new XTPaginationHelper();

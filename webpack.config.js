@@ -3,7 +3,7 @@
  *
  * @license   License GNU General Public License version 2 or later; see LICENSE.txt
  * @author    Andrea Gentil - Anibal Sanchez <team@extly.com>
- * @copyright (c)2012-2024 Extly, CB. All rights reserved.
+ * @copyright (c)2012-2025 Extly, CB. All rights reserved.
  *
  */
 
@@ -100,13 +100,13 @@ function loadEnvironmentDefinitions() {
 
 function cleanDevAssets() {
   const cleanDevAssetsDirs = allExtensionTypesDirs.map(
-      // Read all files
-      (extensionTypesDir) => glob.sync(
-        path.resolve(__dirname, extensionTypesDir) + '/**/*', {
-          dot: true
-        }
-      )
+    // Read all files
+    (extensionTypesDir) => glob.sync(
+      path.resolve(__dirname, extensionTypesDir) + '/**/*', {
+      dot: true
+    }
     )
+  )
     // One flat array
     .flat()
     // Filter to files that match the globalCleanDevAssets to clean
@@ -137,8 +137,8 @@ function discoverFilesToRender(tplDirectory, extensionType) {
   const absTplPath = `${__dirname}/${tplPath}`;
 
   return glob.sync(
-      path.resolve(__dirname, `${tplPath}**/*.@(ini|xml|php|css|js)`),
-    )
+    path.resolve(__dirname, `${tplPath}**/*.@(ini|xml|php|css|js)`),
+  )
     .map(
       (file) => file.replace(absTplPath, '')
     );
@@ -149,8 +149,8 @@ function discoverManifestTemplates(tplDirectory, extensionType) {
   const absTplPath = `${__dirname}/${tplPath}`;
 
   return glob.sync(
-      path.resolve(__dirname, `${tplPath}**/*.xml`),
-    )
+    path.resolve(__dirname, `${tplPath}**/*.xml`),
+  )
     .map(
       (file) => file.replace(absTplPath, '')
     );

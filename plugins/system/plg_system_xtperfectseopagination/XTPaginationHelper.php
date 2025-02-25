@@ -4,8 +4,8 @@
  * @package     XT Perfect SEO Pagination
  *
  * @author      Extly, CB. <team@extly.com>
- * @copyright   Copyright (c)2012-2024 Extly, CB. All rights reserved.
- * @license     http://www.gnu.org/licenses/gpl-2.0.html  GNU/GPLv2
+ * @copyright   Copyright (c)2012-2025 Extly, CB. All rights reserved.
+ * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
  *
  * @see         https://www.extly.com
  */
@@ -80,17 +80,17 @@ class XTPaginationHelper
             $isJ4 = file_exists(JPATH_LIBRARIES.'/classmap.php');
 
             if ($isJ4) {
-                require_once 'J4-Pagination.php';
+                require_once __DIR__.'/J4-Pagination.php';
 
                 return;
             }
 
-            require_once 'J5-Pagination.php';
+            require_once __DIR__.'/J5-Pagination.php';
 
             return;
         }
 
-        require_once 'J3-Pagination.php';
+        require_once __DIR__.'/J3-Pagination.php';
     }
 
     public static function enhanceWithCanonicalLink()
@@ -126,7 +126,7 @@ class XTPaginationHelper
         $start = $input->getInt('limitstart');
 
         if (!$start) {
-            $start = $input->getInt('start');
+            return $input->getInt('start');
         }
 
         return $start;
