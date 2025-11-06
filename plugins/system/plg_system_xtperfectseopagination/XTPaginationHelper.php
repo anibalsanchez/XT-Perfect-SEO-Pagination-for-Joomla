@@ -74,23 +74,22 @@ class XTPaginationHelper
 
     public static function enhanceWithPrevNextLinks()
     {
-        $isJ4orJ5 = file_exists(JPATH_LIBRARIES.'/bootstrap.php');
+        $version = (int) JVERSION;
 
-        if ($isJ4orJ5) {
-            $isJ4 = file_exists(JPATH_LIBRARIES.'/classmap.php');
-
-            if ($isJ4) {
+        switch ($version) {
+            case 3:
+                require_once __DIR__.'/J3-Pagination.php';
+                break;
+            case 4:
                 require_once __DIR__.'/J4-Pagination.php';
-
-                return;
-            }
-
-            require_once __DIR__.'/J5-Pagination.php';
-
-            return;
+                break;
+            case 5:
+                require_once __DIR__.'/J5-Pagination.php';
+                break;
+            case 6:
+                require_once __DIR__.'/J6-Pagination.php';
+                break;
         }
-
-        require_once __DIR__.'/J3-Pagination.php';
     }
 
     public static function enhanceWithCanonicalLink()

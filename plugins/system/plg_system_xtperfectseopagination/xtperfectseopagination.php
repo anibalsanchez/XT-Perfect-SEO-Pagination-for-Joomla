@@ -12,6 +12,11 @@
 
 defined('_JEXEC') || exit;
 
+// Check for Joomla 4+ with disabled Backward Compatibility plugin
+if (version_compare(JVERSION, '4.0', '>=') && !class_exists('JFactory')) {
+    return;
+}
+
 use Extly\Pagination\XTPaginationHelper;
 use Joomla\CMS\Application\AdministratorApplication;
 use Joomla\CMS\Input\Input as CMSWebInput;
