@@ -12,17 +12,21 @@ declare(strict_types=1);
  * @see         https://www.extly.com
  */
 
-use Rector\CodeQuality\Rector\If_\SimplifyIfReturnBoolRector;
 use Rector\Config\RectorConfig;
+use Utils\Rector\Rector\LegacyCallToJClassToJModernRector;
+
+require_once '/home/anibalsanchez/7_Projects/Platform/rector-rule-joomla-legacy-to-joomla-modern/src/Rector/LegacyCallToJClassToJModernRector.php';
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/plugins',
+        __DIR__.'/plugins',
     ])
     ->withSkip([
+        '*/platform/*',
         '*/vendor/*',
         '*/node_modules/*',
         '*Legacy*',
+        'plugins/system/plg_system_xtperfectseopagination/J3-Pagination.php',
     ])
     ->withPhpSets(php74: true)
     ->withPreparedSets(
@@ -33,4 +37,7 @@ return RectorConfig::configure()
         naming: true,
         // TODO: Enable typed properties
         typeDeclarations: false,
-    );
+    )
+    ->withRules([
+        LegacyCallToJClassToJModernRector::class,
+    ]);

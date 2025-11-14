@@ -26,8 +26,10 @@ use Joomla\CMS\Input\Input as CMSWebInput;
  *
  * @since       1.0
  */
-class PlgSystemXTPerfectSEOPagination extends JPlugin
+class PlgSystemXTPerfectSEOPagination extends \Joomla\CMS\Plugin\CMSPlugin
 {
+    public $params;
+
     /**
      * Application object.
      *
