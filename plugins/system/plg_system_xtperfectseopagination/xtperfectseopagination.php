@@ -12,8 +12,10 @@
 
 defined('_JEXEC') || exit;
 
-// Check for Joomla 4+ with disabled Backward Compatibility plugin
-if (version_compare(JVERSION, '4.0', '>=') && !class_exists('JFactory')) {
+// Check for Joomla 6+ with disabled Behaviour - Backward Compatibility 6 plugin
+if (version_compare(JVERSION, '6.0', '>=') && !class_exists('Joomla\CMS\Input\Input')) {
+    Joomla\CMS\Factory::getApplication()->enqueueMessage('XT Perfect SEO Pagination - Backward Compatibility 6 plugin is required.', 'error');
+
     return;
 }
 
@@ -26,7 +28,7 @@ use Joomla\CMS\Input\Input as CMSWebInput;
  *
  * @since       1.0
  */
-class PlgSystemXTPerfectSEOPagination extends \Joomla\CMS\Plugin\CMSPlugin
+class PlgSystemXTPerfectSEOPagination extends Joomla\CMS\Plugin\CMSPlugin
 {
     public $params;
 
@@ -43,6 +45,10 @@ class PlgSystemXTPerfectSEOPagination extends \Joomla\CMS\Plugin\CMSPlugin
 
     public function onAfterRoute()
     {
+        if (version_compare(JVERSION, '6.0', '>=') && !class_exists('Joomla\CMS\Input\Input')) {
+            return;
+        }
+
         if ($this->passed || $this->app instanceof AdministratorApplication || !$this->isPagination()) {
             return;
         }
@@ -60,6 +66,10 @@ class PlgSystemXTPerfectSEOPagination extends \Joomla\CMS\Plugin\CMSPlugin
      */
     public function onBeforeCompileHead()
     {
+        if (version_compare(JVERSION, '6.0', '>=') && !class_exists('Joomla\CMS\Input\Input')) {
+            return;
+        }
+
         if ($this->passed || $this->app instanceof AdministratorApplication || !$this->isPagination()) {
             return;
         }
